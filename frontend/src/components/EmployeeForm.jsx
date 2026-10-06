@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { createEmployee } from "../services/employeeService";
 
-export default function EmployeeForm({ addEmployee, setShowForm }) {
+export default function EmployeeForm({ addEmployee, setShowForm, saving, saveError }) {
 
     const [name, setName] = useState("");
     const [role, setRole] = useState("");
+
+
 
 
 
@@ -21,9 +23,18 @@ export default function EmployeeForm({ addEmployee, setShowForm }) {
     }
 
     return (
+
+
+
         <div className="form-card">
             <h2 className="form-title">+ Add New Employee</h2>
             <form className="employee-form" onSubmit={handleSubmit}>
+
+                {
+                    saveError && (
+                        <p>Failed to save employee</p>
+                    )
+                }
                 <div className="form-row">
                     <div className="form-group">
                         <label className="form-label">Employee Name</label>
@@ -49,9 +60,14 @@ export default function EmployeeForm({ addEmployee, setShowForm }) {
                 </div>
 
                 <div className="form-actions">
-                    <button className="btn btn-primary" type="submit">
-                        Add Employee
+
+
+                    <button className="btn btn-primary" type="submit" disabled={saving}>
+                        {saving ? "Saving..." : "Save Employee"}
                     </button>
+
+
+
                     <button
                         type="button"
                         className="btn btn-secondary"

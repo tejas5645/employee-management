@@ -10,6 +10,10 @@ export default function useEmployees() {
 
     const [error, setError] = useState(null);
 
+    const [saving, setSaving] = useState(false);
+
+    const [saveError, setSaveError] = useState(null);
+
     async function getEmployeesList() {
 
         try {
@@ -32,12 +36,18 @@ export default function useEmployees() {
 
     async function addEmployee(employee) {
 
-        const data = await createEmployee(employee);
+        try {
+            setSaving(true);
 
-        console.log(data);
+            const data = await createEmployee(employee);
 
-        setEmployees(prev => [...prev, data]);
+            setEmployees(prev => [...prev, data]);
 
+        } catch (error) {
+            setSaveError(error);
+        } finally {
+            setSaving(false);
+        }
     }
 
     return {
@@ -48,7 +58,9 @@ export default function useEmployees() {
         error,
         setError,
         getEmployeesList,
-        addEmployee
+        addEmployee,
+        saving,
+        saveError
     };
 
 

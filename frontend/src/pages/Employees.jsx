@@ -10,7 +10,9 @@ export default function Employees() {
         setEmployees,
         loading,
         error,
-        addEmployee
+        addEmployee,
+        saving,
+        saveError
     } = useEmployees();
 
     const [showForm, setShowForm] = useState(false);
@@ -57,8 +59,9 @@ export default function Employees() {
                 <EmployeeForm
                     addEmployee={addEmployee}
                     setShowForm={setShowForm}
+                    saving={saving}
+                    saveError={saveError}
                 />
-
 
             )}
 
