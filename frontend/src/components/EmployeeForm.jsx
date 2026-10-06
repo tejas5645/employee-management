@@ -1,23 +1,21 @@
 import { useState } from "react";
 import { createEmployee } from "../services/employeeService";
 
-export default function EmployeeForm({ setEmployees, setShowForm }) {
+export default function EmployeeForm({ addEmployee, setShowForm }) {
 
     const [name, setName] = useState("");
     const [role, setRole] = useState("");
-    const [loading, setLoading] = useState(false);
+
+
 
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const data = await createEmployee({
-            name: name,
-            role: role
+
+        await addEmployee({
+            name,
+            role
         });
-
-        console.log(data);
-
-        setEmployees(prev => [...prev, data]);
 
         setShowForm(false);
     }
@@ -54,9 +52,9 @@ export default function EmployeeForm({ setEmployees, setShowForm }) {
                     <button className="btn btn-primary" type="submit">
                         Add Employee
                     </button>
-                    <button 
-                        type="button" 
-                        className="btn btn-secondary" 
+                    <button
+                        type="button"
+                        className="btn btn-secondary"
                         onClick={() => setShowForm(false)}
                     >
                         Cancel

@@ -1,48 +1,13 @@
 import { useParams, Link } from "react-router-dom"
-import { getEmployee } from "../services/employeeService";
-import { useState, useEffect } from "react";
+import useEmployee from "../hooks/useEmployee";
 
 export default function EmployeeDetails() {
 
     const { id } = useParams()
 
-    const [employee, setEmployee] = useState(null)
-
-    const [loading, setLoading] = useState(false);
-
-    const [error, setError] = useState(null);
-
-    async function loadEmployee() {
-
-        try {
-
-            setLoading(true)
-
-            const data = await getEmployee(id)
-
-            setEmployee(data)
-
-        }
-        catch (error) {
-
-            setError(error)
-
-        }
-        finally {
-
-            setLoading(false)
-
-        }
+    const { employee, loading, error } = useEmployee(id)
 
 
-    }
-
-
-    useEffect(() => {
-
-        loadEmployee()
-
-    }, [])
 
     if (error)
         return (

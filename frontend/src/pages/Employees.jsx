@@ -1,49 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import EmployeeForm from "../components/EmployeeForm";
 import EmployeeList from "../components/EmployeeList";
-import { getEmployees } from "../services/employeeService";
+import useEmployees from "../hooks/useEmployees";
 
 export default function Employees() {
 
-
-    const [employees, setEmployees] = useState([]);
+    const {
+        employees,
+        setEmployees,
+        loading,
+        error,
+        addEmployee
+    } = useEmployees();
 
     const [showForm, setShowForm] = useState(false);
-
-    const [loading, setLoading] = useState(false);
-
-    const [error, setError] = useState(null);
-
-
-    async function getEmployeesList() {
-
-        try {
-
-            setLoading(true)
-
-            const data = await getEmployees();
-            setEmployees(data);
-
-            setEmployees(data)
-
-        }
-        catch (error) {
-
-            setError(error)
-
-        }
-        finally {
-
-            setLoading(false)
-        }
-
-    }
-
-    useEffect(() => {
-
-        getEmployeesList()
-
-    }, [])
 
 
     if (error)
@@ -85,7 +55,7 @@ export default function Employees() {
             {showForm && (
 
                 <EmployeeForm
-                    setEmployees={setEmployees}
+                    addEmployee={addEmployee}
                     setShowForm={setShowForm}
                 />
 
