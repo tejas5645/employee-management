@@ -64,6 +64,54 @@ app.delete("/api/employee/:id", (req, res) => {
 
 })
 
+const deparments = [
+    {
+        id: 1,
+        name: "IT"
+    },
+    {
+        id: 2,
+        name: "HR"
+    },
+    {
+        id: 3,
+        name: "Developer"
+    }
+]
+
+app.get("/api/departments", (req, res) => {
+    res.json(deparments)
+})
+
+
+app.post("/api/departments", (req, res) => {
+    const department = {
+        id: deparments.length + 1,
+        name: req.body.name,
+    };
+
+    deparments.push(department);
+
+    res.status(201).json(department);
+});
+
+app.get("/api/departments/:id", (req, res) => {
+
+    const id = Number(req.params.id);
+
+    const department = deparments.find(
+        department => department.id === id
+    );
+
+    if (!department) {
+        return res.status(404).json({
+            message: "Department not found"
+        });
+    }
+
+    res.json(department);
+});
+
 
 app.listen(5000, () => {
     console.log("Server running on http://localhost:5000");

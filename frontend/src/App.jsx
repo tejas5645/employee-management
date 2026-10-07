@@ -4,6 +4,8 @@ import About from "./About";
 import Employees from "./pages/Employees"
 import EmployeeDetails from "./pages/EmployeeDetails";
 import "./App.css";
+import Departments from "./pages/Departments";
+import DepartmentDetails from "./pages/DepartmentDetails";
 
 export default function App() {
   return (
@@ -19,6 +21,7 @@ export default function App() {
               <li><Link to="/" className="nav-link">Home</Link></li>
               <li><Link to="/employees" className="nav-link">Employees</Link></li>
               <li><Link to="/about" className="nav-link">About</Link></li>
+              <li><Link to="/departments" className="nav-link">Departments</Link></li>
             </ul>
           </nav>
         </div>
@@ -29,6 +32,8 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/employees" element={<Employees />} />
           <Route path="/employee/:id" element={<EmployeeDetails />} />
+          <Route path="/departments" element={<Departments />} />
+          <Route path="/departments/:id" element={<DepartmentDetails />} />
         </Routes>
       </main>
     </BrowserRouter>
