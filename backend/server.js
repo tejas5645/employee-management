@@ -113,6 +113,25 @@ app.get("/api/departments/:id", (req, res) => {
 });
 
 
+app.put("/api/deparments/:id", (req, res) => {
+
+    const id = Number(req.params.id);
+
+    const department = deparments.find(
+        department => department.id === id
+    )
+
+    if (!department) {
+        return res.status(404).json({
+            message: "Department not found"
+        });
+    }
+
+    department.name = req.body.name;
+    return res.json(department);
+})
+
+
 app.listen(5000, () => {
     console.log("Server running on http://localhost:5000");
 });

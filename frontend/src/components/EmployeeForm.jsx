@@ -23,35 +23,29 @@ export default function EmployeeForm({ addEmployee, setShowForm, saving, saveErr
     }
 
     return (
-
-
-
-        <div className="form-card">
-            <h2 className="form-title">+ Add New Employee</h2>
-            <form className="employee-form" onSubmit={handleSubmit}>
-
+        <div>
+            <h2>+ Add New Employee</h2>
+            <form onSubmit={handleSubmit}>
                 {
                     saveError && (
                         <p>Failed to save employee</p>
                     )
                 }
-                <div className="form-row">
-                    <div className="form-group">
-                        <label className="form-label">Employee Name</label>
+                <div>
+                    <div>
+                        <label>Employee Name</label>
                         <input
                             type="text"
-                            className="input-field"
                             placeholder="Enter full name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label className="form-label">Role / Position</label>
+                    <div>
+                        <label>Role / Position</label>
                         <input
                             type="text"
-                            className="input-field"
                             placeholder="Enter job role"
                             value={role}
                             onChange={(e) => setRole(e.target.value)}
@@ -59,18 +53,13 @@ export default function EmployeeForm({ addEmployee, setShowForm, saving, saveErr
                     </div>
                 </div>
 
-                <div className="form-actions">
-
-
-                    <button className="btn btn-primary" type="submit" disabled={saving}>
+                <div>
+                    <button type="submit" disabled={saving}>
                         {saving ? "Saving..." : "Save Employee"}
                     </button>
 
-
-
                     <button
                         type="button"
-                        className="btn btn-secondary"
                         onClick={() => setShowForm(false)}
                     >
                         Cancel

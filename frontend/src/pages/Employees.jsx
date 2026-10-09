@@ -7,12 +7,9 @@ export default function Employees() {
 
     const {
         employees,
-        setEmployees,
         loading,
         error,
-        addEmployee,
-        saving,
-        saveError
+        addEmployee
     } = useEmployees();
 
     const [showForm, setShowForm] = useState(false);

@@ -16,8 +16,21 @@ export default function DeparmentList({ departments }) {
 
                 <div key={deparment.id}>
 
-                    <p>{deparment.name} <button onClick={() => navigate(`/departments/${deparment.id}`)} className="btn-sm">View</button></p>
+                    <p>
+                        {deparment.name}
 
+                        <button
+                            onClick={() => navigate(`/departments/${deparment.id}`)}
+                        >
+                            View
+                        </button>
+
+                        <button
+                            onClick={() => console.log("Edit clicked", deparment)}
+                        >
+                            Edit
+                        </button>
+                    </p>
                 </div>
 
 

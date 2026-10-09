@@ -9,26 +9,26 @@ export default function EmployeeList({ employees }) {
     const navigate = useNavigate()
 
     return (
-        <div className="employee-grid">
+        <div>
             {employees && employees.length > 0 ? (
                 employees.map((employee) => {
                     const initials = employee.name
                         ? employee.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()
                         : 'EM';
                     return (
-                        <div className="employee-card" key={employee.id}>
-                            <div className="employee-card-header">
-                                <div className="avatar-circle">
+                        <div key={employee.id}>
+                            <div>
+                                <div>
                                     {initials}
                                 </div>
-                                <div className="employee-card-body">
-                                    <h3 className="employee-name">{employee.name}</h3>
-                                    <span className="role-badge">{employee.role}</span>
+                                <div>
+                                    <h3>{employee.name}</h3>
+                                    <span>{employee.role}</span>
                                 </div>
                             </div>
 
-                            <div className="employee-card-footer">
-                                <button className="btn btn-primary btn-sm" onClick={() => navigate(`/employee/${employee.id}`)}>
+                            <div>
+                                <button onClick={() => navigate(`/employee/${employee.id}`)}>
                                     View
                                 </button>
                             </div>
@@ -36,8 +36,8 @@ export default function EmployeeList({ employees }) {
                     );
                 })
             ) : (
-                <div className="glass-card empty-state" style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem 1.5rem' }}>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem' }}>
+                <div>
+                    <p>
                         No employees found. Click <strong>+ Add Employee</strong> to create your first record.
                     </p>
                 </div>
