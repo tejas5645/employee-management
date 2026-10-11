@@ -5,6 +5,8 @@ import Employees from "./pages/Employees"
 import EmployeeDetails from "./pages/EmployeeDetails";
 import Departments from "./pages/Departments";
 import DepartmentDetails from "./pages/DepartmentDetails";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 export default function App() {
   return (
     <BrowserRouter>
@@ -20,6 +22,8 @@ export default function App() {
               <li><Link to="/employees">Employees</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/departments">Departments</Link></li>
+              <li><Link to="/login">Login</Link></li>
+
             </ul>
           </nav>
         </div>
@@ -32,6 +36,8 @@ export default function App() {
           <Route path="/employee/:id" element={<EmployeeDetails />} />
           <Route path="/departments" element={<Departments />} />
           <Route path="/departments/:id" element={<DepartmentDetails />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </main>
     </BrowserRouter>

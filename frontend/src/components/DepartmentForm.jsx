@@ -1,11 +1,9 @@
 import { useState } from "react";
 
-export default function DepartmentForm({ setShowForm, createDepartment }) {
-
-    console.log("Child Render", createDepartment)
+export default function DepartmentForm({ setShowForm, createDepartment, department, editDepartment }) {
 
 
-    const [name, setName] = useState("");
+    const [name, setName] = useState(department ? department.name : "");
 
 
 
@@ -14,11 +12,19 @@ export default function DepartmentForm({ setShowForm, createDepartment }) {
 
         e.preventDefault();
 
-        const department = {
-            name
+        if (department == null) {
+            const department = {
+                name
+            }
+            await createDepartment(department)
+
+        }
+        else {
+            await editDepartment(department.id, { name });
         }
 
-        await createDepartment(department)
+
+
 
         setShowForm(false);
     }
@@ -35,7 +41,9 @@ export default function DepartmentForm({ setShowForm, createDepartment }) {
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Department Name" />
 
 
-                <button type="submit" >Add Department</button>
+                <button type="submit" >{department ? "Update Department" : "Add Department"}</button>
+
+
 
 
 

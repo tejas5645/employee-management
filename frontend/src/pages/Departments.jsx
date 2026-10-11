@@ -9,14 +9,15 @@ export default function Departments() {
 
 
 
-
+    const [departmentToEdit, setDepartmentToEdit] = useState(null)
     const [showForm, setShowForm] = useState(false)
 
     const {
         departments,
         createDepartment,
         loading,
-        error
+        error,
+        editDepartment
     } = useDepartments();
 
 
@@ -33,10 +34,18 @@ export default function Departments() {
 
             <button onClick={() => setShowForm(true)}>Add Department</button>
 
-            {showForm && <DepartmentForm setShowForm={setShowForm} createDepartment={createDepartment} />}
+            {showForm && (
+                <DepartmentForm
+                    setShowForm={setShowForm}
+                    createDepartment={createDepartment}
+                    editDepartment={editDepartment}
+                    department={departmentToEdit}
+                />
+            )}
 
 
-            <DeparmentList departments={departments} />
+            <DeparmentList departments={departments} setDepartmentToEdit={setDepartmentToEdit}
+                setShowForm={setShowForm} />
         </div>
     );
 }

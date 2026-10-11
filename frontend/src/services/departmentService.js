@@ -26,3 +26,17 @@ export async function addDepartment(department) {
 
     return response.data;
 }
+
+export async function updateDepartment(id, department) {
+
+    const response = await api.put(
+
+        `/departments/${id}`,
+        department
+
+    )
+
+    return response.data;
+
+}
+

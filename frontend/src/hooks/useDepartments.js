@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getDepartments, addDepartment } from "../services/departmentService";
+import { getDepartments, addDepartment, updateDepartment } from "../services/departmentService";
 
 export default function useDepartments() {
 
@@ -54,13 +54,30 @@ export default function useDepartments() {
 
     }
 
+    async function editDepartment(id, department) {
+
+        const data = await updateDepartment(id, { name: department.name })
+
+        setDepartments(prev =>
+            prev.map(department => {
+                if (department.id === id) {
+                    return data;
+                }
+
+                return department;
+            })
+        );
+
+    }
+
 
 
     return {
         departments,
         createDepartment,
         loading,
-        error
+        error,
+        editDepartment
     }
 
 

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
-export default function DeparmentList({ departments }) {
+export default function DeparmentList({ departments, setDepartmentToEdit, setShowForm }) {
 
     const navigate = useNavigate()
 
@@ -25,9 +25,10 @@ export default function DeparmentList({ departments }) {
                             View
                         </button>
 
-                        <button
-                            onClick={() => console.log("Edit clicked", deparment)}
-                        >
+                        <button onClick={() => {
+                            setDepartmentToEdit(deparment);
+                            setShowForm(true);
+                        }}>
                             Edit
                         </button>
                     </p>
