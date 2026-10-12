@@ -156,6 +156,48 @@ app.delete("/api/departments/:id", (req, res) => {
 
 })
 
+const users = [];
+
+
+app.post("/api/register", (req, res) => {
+
+
+    const newUser = {
+        id: users.length + 1,
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+    };
+
+    users.push(newUser);
+
+    res.status(201).json(newUser);
+
+})
+
+app.post("/api/login", (req, res) => {
+
+    const { email, password } = req.body;
+
+
+    console.log("Login email:", req.body.email);
+    console.log("Users in memory:", users.length);
+
+    const user = users.find(
+        user => user.email === email && user.password === password
+    )
+
+    if (!user) {
+        return res.status(401).json({
+            message: "Invalid Credentials"
+        });
+    }
+
+    return res.json(user);
+
+})
+
+
 
 app.listen(5000, () => {
     console.log("Server running on http://localhost:5000");

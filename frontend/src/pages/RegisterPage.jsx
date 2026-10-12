@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import { Register } from "../services/authService"
 
 export default function RegisterPage() {
 
@@ -10,15 +11,33 @@ export default function RegisterPage() {
 
     const navigate = useNavigate()
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
 
         e.preventDefault()
 
-        console.log(name, email, password)
+        const payload = {
+            name: name,
+            email: email,
+            password: password
+        }
 
-        setName("")
-        setEmail("")
-        setPassword("")
+        try {
+            const data = await Register(payload)
+            console.log(data)
+
+            setName("")
+            setEmail("")
+            setPassword("")
+        }
+        catch (error) {
+            console.error("Error In Register", error)
+        }
+
+
+
+
+
+
 
     }
 
@@ -37,13 +56,6 @@ export default function RegisterPage() {
                 <input type="text" value={password} placeholder="password" onChange={(e) => setPassword(e.target.value)} />
 
                 <button type="submit">Register</button>
-
-
-
-
-
-
-
 
             </form>
 
